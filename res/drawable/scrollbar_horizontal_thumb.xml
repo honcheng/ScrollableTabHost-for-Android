@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  blue -->
+    <!-- 
+    <gradient 
+    	android:startColor="#3333FF" 
+    	android:endColor="#8080FF" 
+    	android:angle="0"/>
+   	 -->
+   	 
+   	<!--  green -->
+   	<!-- 
+    <gradient 
+    	android:startColor="#000" 
+    	android:endColor="#33FF33" 
+    	android:angle="0"/>
+     -->
+     
+    <!--  yellow -->
+    <gradient 
+    	android:startColor="#000" 
+    	android:endColor="#FFFF00" 
+    	android:angle="0"/>
+     
+    <!--  gray -->
+    <!--  
+    <gradient 
+    	android:startColor="#000" 
+    	android:endColor="#000" 
+    	android:angle="0"/>
+    -->
+    <corners android:radius="5dip" />
+</shape>
