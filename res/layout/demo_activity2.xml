@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#F00">
-<Button android:id="@+id/Button01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:text="Launch DemoActivity1"></Button>
+    android:layout_height="fill_parent" 
+    android:background="#AAA">
+    
+    <TextView android:id="@+id/TextView01" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:textColor="#FFF" 
+		android:textStyle="bold" 
+		android:textSize="20dip"
+		android:layout_centerInParent="true" android:text="DemoActivity2"/>
+	<Button android:id="@+id/Button01" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="Launch DemoActivity1" android:layout_below="@+id/TextView01" android:layout_centerHorizontal="true"/>
 </RelativeLayout>

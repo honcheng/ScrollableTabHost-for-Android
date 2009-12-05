@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, CustomSlidingTabHost!</string>
-    <string name="app_name">CustomSlidingTabHost</string>
+    <string name="app_name">mobyfactory UIWidgets for Android</string>
 </resources>
