@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 /*
- * This activity demonstrates the use of ScrollableTabActivity by extending the class
+ * This activity demonstrates the use of ScrollableTabActivity
+ * and setting on/off button image with 2 separate images
+ * 
  * 
  * Required files:
  * ScrollableTabActivity.java
@@ -18,8 +20,7 @@ import android.util.Log;
  * res/layout/customslidingtabhost.xml
  * res/layout/scrollgroupradiobuttonview.xml
  */
-public class Demo_ScrollableTabHost  extends ScrollableTabActivity{
-
+public class Demo_ScrollableTabHost3 extends ScrollableTabActivity{
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +38,11 @@ public class Demo_ScrollableTabHost  extends ScrollableTabActivity{
         	else intent = new Intent(this, DemoActivity2.class);
         	
         	/*
-        	 * This adds a title and an image to the tab bar button
-        	 * Image should be a PNG file with transparent background.
-        	 * Shades are opaque areas in on and off state are specific as parameters
+        	 * This adds a title, an off-state image, and an on-state image to the tab bar button
+        	 * Image is displayed as it is without shading
         	 */
-        	this.addTab("title"+i, R.drawable.star, RadioStateDrawable.SHADE_MAGENTA, RadioStateDrawable.SHADE_RED,intent);
+        	this.addTab("title"+i, R.drawable.star_orange_frame, R.drawable.star_orange_filled, intent);
+        	
         }
         
         /*

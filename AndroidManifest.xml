@@ -12,8 +12,32 @@
             </intent-filter>
         </activity>
         
+         <activity android:name=".DemoList_ScrollableTabHost"
+                  android:label="List of Scrollable TabHost Sample">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Demo_ScrollableTabHost"
                   android:label="Demo Scrollable TabHost">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+         <activity android:name=".Demo_ScrollableTabHost2"
+                  android:label="Demo Scrollable TabHost2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+         <activity android:name=".Demo_ScrollableTabHost3"
+                  android:label="Demo Scrollable TabHost3">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Demo_ScrollableTabHost4"
+                  android:label="Demo Scrollable TabHost4">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

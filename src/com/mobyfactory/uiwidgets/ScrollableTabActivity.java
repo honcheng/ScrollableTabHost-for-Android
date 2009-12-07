@@ -61,6 +61,8 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
 	private List titleList;
 	private List states;
 	private SliderBarActivityDelegate delegate;
+	private int defaultOffShade;
+	private int defaultOnShade;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,8 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
         bottomRadioGroup = (RadioGroup)findViewById(R.id.bottomMenu);
         contentViewLayoutParams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT); 
         
+        defaultOffShade = RadioStateDrawable.SHADE_GRAY;
+        defaultOnShade = RadioStateDrawable.SHADE_YELLOW;
         /*
          *  alternative method to using XML for layout, not used
          */
@@ -121,28 +125,34 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
     {
     	bottomRadioGroup.removeAllViews();
     	
-    	int max_visible_items = 5;
+    	int optimum_visible_items_in_portrait_mode = 5;
     	try
     	{
     		WindowManager window = getWindowManager();
         	Display display = window.getDefaultDisplay();
         	int window_width = display.getWidth();
         	
-        	max_visible_items = (int) (window_width/64.0);
+        	optimum_visible_items_in_portrait_mode = (int) (window_width/64.0);
     	}
     	catch (Exception e)
     	{
-    		max_visible_items = 5;
+    		optimum_visible_items_in_portrait_mode = 5;
     	}
     	
-    	if (intentList.size()<=max_visible_items)
+    	int screen_width = getWindowManager().getDefaultDisplay().getWidth();
+    	int width;
+    	if (intentList.size()<=optimum_visible_items_in_portrait_mode)
     	{
-    		int screen_width = getWindowManager().getDefaultDisplay().getWidth();
-    		int width = screen_width/intentList.size();
-    		RadioStateDrawable.width = width;
-    		RadioStateDrawable.screen_width = screen_width;
-    		buttonLayoutParams = new RadioGroup.LayoutParams(width, RadioGroup.LayoutParams.WRAP_CONTENT);
+    		width = screen_width/intentList.size();
     	}
+    	else
+    	{
+    		//width = screen_width/5;
+    		width = 320/5; 
+    	}
+    	RadioStateDrawable.width = width;
+		RadioStateDrawable.screen_width = screen_width;
+		buttonLayoutParams = new RadioGroup.LayoutParams(width, RadioGroup.LayoutParams.WRAP_CONTENT);
     	
     	for (int i=0; i<intentList.size(); i++)
     	{
@@ -161,14 +171,14 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
     }
     
     /**
-     * <b><i>protected void addTab(String title, int onIconStateId, int offIconStateId, Intent intent)</i></b> <p><p>
+     * <b><i>protected void addTab(String title, int offIconStateId, int onIconStateId, Intent intent)</i></b> <p><p>
      * Add a tab to the navigation bar by specifying the title, 1 image for button on-state, and 1 image for button off-state<p>
      * @param title				a String that specifies that title of the tab button
      * @param onIconStateId		id of the on-state image
      * @param offIconStateId	id of the off-state image
      * @param intent			intent to start when button is tapped
      */
-    protected void addTab(String title, int onIconStateId, int offIconStateId, Intent intent)
+    protected void addTab(String title, int offIconStateId, int onIconStateId, Intent intent)
     {
     	int[] iconStates = {onIconStateId, offIconStateId};
     	states.add(iconStates);
@@ -186,7 +196,8 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
      */
     protected void addTab(String title, int iconStateId, Intent intent)
     {
-    	int[] iconStates = {iconStateId};
+    	//int[] iconStates = {iconStateId};
+    	int[] iconStates = {iconStateId, defaultOffShade, defaultOnShade};
     	states.add(iconStates);
     	intentList.add(intent);
     	titleList.add(title);
@@ -211,6 +222,18 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
     	//commit();
     }
 
+    /**
+     * <b><i>protected void setDefaultShde(int offShade, int onShade)</i></b><p><p>
+     * Sets the default on and off color shades of the bottom bar buttons<p>
+     * If not specified, the default off shade is gray, and the default on shade is yellow
+     * @param offShade			id for off-state color shades (e.g. RadioStateDrawable.SHADE_GRAY, RadioStateDrawable.SHADE_GREEN etc)
+     * @param onShade			id for on-state color shades (e.g. RadioStateDrawable.SHADE_GRAY, RadioStateDrawable.SHADE_GREEN etc)
+     */
+    protected void setDefaultShade(int offShade, int onShade)
+    {
+    	defaultOffShade = offShade;
+    	defaultOnShade = onShade;
+    }
     
     public void onCheckedChanged(RadioGroup group, int checkedId) {
     	try

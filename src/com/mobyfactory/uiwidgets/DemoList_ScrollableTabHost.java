@@ -2,6 +2,7 @@ package com.mobyfactory.uiwidgets;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-public class ProjectList extends ListActivity {
+	
+public class DemoList_ScrollableTabHost extends ListActivity{
 	
 	static List intentsArray;
 	
@@ -24,12 +25,33 @@ public class ProjectList extends ListActivity {
         
         intentsArray = new ArrayList();
         
-        // show scrollable tabhost demo
+        // Set default on/off colour shades
+        IntentObject demoScrollabelTabHost2 = new IntentObject();
+        demoScrollabelTabHost2.title = "Set default on/off colour shades";
+        demoScrollabelTabHost2.description = "File: Demo_ScrollableTabHost2";
+        demoScrollabelTabHost2.intent = new Intent(this, Demo_ScrollableTabHost2.class);
+        intentsArray.add(demoScrollabelTabHost2);
+        
+        // Set on/off colour shades individually
         IntentObject demoScrollabelTabHost = new IntentObject();
-        demoScrollabelTabHost.title = "Scrollable TabHost";
-        demoScrollabelTabHost.description = "com.mobyfactory.scrollabletabhost";
-        demoScrollabelTabHost.intent = new Intent(this, DemoList_ScrollableTabHost.class);
+        demoScrollabelTabHost.title = "Set on/off colour shades individually";
+        demoScrollabelTabHost.description = "File: Demo_ScrollableTabHost";
+        demoScrollabelTabHost.intent = new Intent(this, Demo_ScrollableTabHost.class);
         intentsArray.add(demoScrollabelTabHost);
+        
+        // Set on/off images
+        IntentObject demoScrollabelTabHost3 = new IntentObject();
+        demoScrollabelTabHost3.title = "Set different on/off images";
+        demoScrollabelTabHost3.description = "File: Demo_ScrollableTabHost3";
+        demoScrollabelTabHost3.intent = new Intent(this, Demo_ScrollableTabHost3.class);
+        intentsArray.add(demoScrollabelTabHost3);
+        
+        // Shows that scroll view is hidden and tabs are spaced out with less items
+        IntentObject demoScrollabelTabHost4 = new IntentObject();
+        demoScrollabelTabHost4.title = "ScrollView hidden with less items";
+        demoScrollabelTabHost4.description = "File: Demo_ScrollableTabHost4";
+        demoScrollabelTabHost4.intent = new Intent(this, Demo_ScrollableTabHost4.class);
+        intentsArray.add(demoScrollabelTabHost4);
         
         setListAdapter(new EfficientAdapter(this));
     }

@@ -144,12 +144,12 @@ public class RadioStateDrawable extends Drawable{
 		
 		int bwidth = bitmap.getWidth();
 		int bheight = bitmap.getHeight();
-
+		/*
 		if (width==0)
 		{
 			if (screen_width==0) screen_width = 320;
 			width=screen_width/5;
-		}
+		}*/
 		int x = (width-bwidth)/2;
 		int y = 2;
 

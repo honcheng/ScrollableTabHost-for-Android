@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 /*
- * This activity demonstrates the use of ScrollableTabActivity by extending the class
+ * This activity demonstrates the use of ScrollableTabActivity
+ * and setting default on/off colour shades
+ * 
  * 
  * Required files:
  * ScrollableTabActivity.java
@@ -18,8 +20,7 @@ import android.util.Log;
  * res/layout/customslidingtabhost.xml
  * res/layout/scrollgroupradiobuttonview.xml
  */
-public class Demo_ScrollableTabHost  extends ScrollableTabActivity{
-
+public class Demo_ScrollableTabHost2 extends ScrollableTabActivity{
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,13 @@ public class Demo_ScrollableTabHost  extends ScrollableTabActivity{
          */
         setDelegate(new SliderBarActivityDelegateImpl());
         
+        /*
+         * optional
+         * set default off and on color shades of tab bar button
+         * if not specified, opaque areas are shaded gray in off state, and yellow in on state 
+         */
+        setDefaultShade(RadioStateDrawable.SHADE_GRAY, RadioStateDrawable.SHADE_GREEN);
+        
         for (int i=0; i<14; i++)
         {
         	Intent intent;
@@ -37,11 +45,12 @@ public class Demo_ScrollableTabHost  extends ScrollableTabActivity{
         	else intent = new Intent(this, DemoActivity2.class);
         	
         	/*
-        	 * This adds a title and an image to the tab bar button
+        	 * This adds a title, and an image to the tab bar button
         	 * Image should be a PNG file with transparent background.
-        	 * Shades are opaque areas in on and off state are specific as parameters
+        	 * By default, opaque areas are shaded gray in off state, and yellow in on state 
         	 */
-        	this.addTab("title"+i, R.drawable.star, RadioStateDrawable.SHADE_MAGENTA, RadioStateDrawable.SHADE_RED,intent);
+        	this.addTab("title"+i, R.drawable.star, intent);
+        	
         }
         
         /*

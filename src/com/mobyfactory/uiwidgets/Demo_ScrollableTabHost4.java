@@ -18,7 +18,7 @@ import android.util.Log;
  * res/layout/customslidingtabhost.xml
  * res/layout/scrollgroupradiobuttonview.xml
  */
-public class Demo_ScrollableTabHost  extends ScrollableTabActivity{
+public class Demo_ScrollableTabHost4  extends ScrollableTabActivity{
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class Demo_ScrollableTabHost  extends ScrollableTabActivity{
          */
         setDelegate(new SliderBarActivityDelegateImpl());
         
-        for (int i=0; i<14; i++)
+        for (int i=0; i<3; i++)
         {
         	Intent intent;
         	if (i%2==0) intent = new Intent(this, DemoActivity1.class);
@@ -41,7 +41,7 @@ public class Demo_ScrollableTabHost  extends ScrollableTabActivity{
         	 * Image should be a PNG file with transparent background.
         	 * Shades are opaque areas in on and off state are specific as parameters
         	 */
-        	this.addTab("title"+i, R.drawable.star, RadioStateDrawable.SHADE_MAGENTA, RadioStateDrawable.SHADE_RED,intent);
+        	this.addTab("title"+i, R.drawable.star, RadioStateDrawable.SHADE_GRAY, RadioStateDrawable.SHADE_GREEN,intent);
         }
         
         /*
@@ -63,3 +63,4 @@ public class Demo_ScrollableTabHost  extends ScrollableTabActivity{
     	}
     }
 }
+
