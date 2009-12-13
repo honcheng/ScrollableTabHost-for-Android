@@ -21,7 +21,6 @@ public class DemoList_ScrollableTabHost extends ListActivity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.main);
         
         intentsArray = new ArrayList();
         

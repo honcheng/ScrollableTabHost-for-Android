@@ -5,22 +5,38 @@ import java.util.List;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ProjectList extends ListActivity {
 	
 	static List intentsArray;
+	Context context;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.main);
+        setContentView(R.layout.main);
+        context = this;
+        
+        Button button = (Button)findViewById(R.id.getSourceButton);
+        button.setOnClickListener(
+            	new OnClickListener()
+            	{
+    				public void onClick(View v) {
+    					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://code.google.com/p/mobyfactory-uiwidgets-android/"));
+    			        context.startActivity(intent);
+    				}	
+            	}
+         );
         
         intentsArray = new ArrayList();
         
@@ -30,6 +46,8 @@ public class ProjectList extends ListActivity {
         demoScrollabelTabHost.description = "com.mobyfactory.scrollabletabhost";
         demoScrollabelTabHost.intent = new Intent(this, DemoList_ScrollableTabHost.class);
         intentsArray.add(demoScrollabelTabHost);
+        
+        
         
         setListAdapter(new EfficientAdapter(this));
     }
