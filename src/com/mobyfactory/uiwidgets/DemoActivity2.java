@@ -27,6 +27,18 @@ public class DemoActivity2 extends Activity{
     				}	
             	}
          );
+        
+        Button button2 = (Button)findViewById(R.id.Button02);
+        button2.setOnClickListener(
+            	new OnClickListener()
+            	{
+    				public void onClick(View v) {
+    					Intent intent = new Intent(ScrollableTabActivity.ACTION_CHANGE_TAB);
+    					intent.putExtra(ScrollableTabActivity.CURRENT_TAB_INDEX, 0);
+    					sendBroadcast(intent);
+    				}	
+            	}
+         );
     }
 }
 

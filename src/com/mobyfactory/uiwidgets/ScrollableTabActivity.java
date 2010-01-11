@@ -36,8 +36,10 @@ import java.util.ArrayList;
 import java.util.List;
 import android.app.ActivityGroup;
 import android.app.LocalActivityManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Gravity;
@@ -63,6 +65,11 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
 	private SliderBarActivityDelegate delegate;
 	private int defaultOffShade;
 	private int defaultOnShade;
+	
+	private IntentFilter changeTabIntentFilter;
+	private ChangeTabBroadcastReceiver changeTabBroadcastReceiver;
+	public static String CURRENT_TAB_INDEX;
+	public static String ACTION_CHANGE_TAB = "com.mobyfactory.changeTab";
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,6 +127,19 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
         buttonLayoutParams = new RadioGroup.LayoutParams(320/5, RadioGroup.LayoutParams.WRAP_CONTENT);
     }
     
+    public void onResume()
+    {
+    	changeTabIntentFilter = new IntentFilter(ACTION_CHANGE_TAB);
+    	changeTabBroadcastReceiver = new ChangeTabBroadcastReceiver();
+    	registerReceiver(changeTabBroadcastReceiver, changeTabIntentFilter);
+    	super.onResume();
+    }
+    
+    public void onPause()
+    {
+    	unregisterReceiver(changeTabBroadcastReceiver);
+    	super.onPause();
+    }
 
     public void commit()
     {
@@ -166,8 +186,7 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
         	bottomRadioGroup.addView(tabButton, i, buttonLayoutParams);
     	}
     	
-    	bottomRadioGroup.check(0);
-		startGroupActivity(titleList.get(0).toString(), (Intent)intentList.get(0));
+    	setCurrentTab(0);
     }
     
     /**
@@ -253,6 +272,17 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
         contentViewLayout.addView(view, contentViewLayoutParams);
     }
     
+    public void setCurrentTab(int index)
+    {
+    	bottomRadioGroup.check(index);
+		startGroupActivity(titleList.get(index).toString(), (Intent)intentList.get(index));
+    }
+    
+    public int getCurrentTab()
+    {
+    	return bottomRadioGroup.getCheckedRadioButtonId();
+    }
+    
     /*
      * gets required R, not used
      */
@@ -287,5 +317,19 @@ public class ScrollableTabActivity extends ActivityGroup  implements RadioGroup.
          * Called when tab changed
          */
         protected void onTabChanged(int tabIndex) {}
+    }
+    
+    /*
+     * Broadcast receiver to set current tab
+     */
+    
+    public class ChangeTabBroadcastReceiver extends BroadcastReceiver
+    {
+    	@Override
+    	public void onReceive(Context context, Intent intent)
+    	{
+    		int index = intent.getExtras().getInt(CURRENT_TAB_INDEX);
+    		setCurrentTab(index);
+    	}
     }
 }

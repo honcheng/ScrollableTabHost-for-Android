@@ -10,9 +10,18 @@
 		android:textColor="#FFF" 
 		android:textStyle="bold" 
 		android:textSize="20dip"
-		android:layout_centerInParent="true" android:text="DemoActivity2"/>
+		android:layout_centerInParent="true" 
+		android:text="DemoActivity2"/>
 	<Button android:id="@+id/Button01" 
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content" 
-		android:text="Launch DemoActivity1" android:layout_below="@+id/TextView01" android:layout_centerHorizontal="true"/>
+		android:text="Launch DemoActivity1" 
+		android:layout_below="@+id/TextView01" 
+		android:layout_centerHorizontal="true"/>
+	<Button android:id="@+id/Button02" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="Jump to 1st Tab (index=0)" 
+		android:layout_below="@+id/Button01" 
+		android:layout_centerHorizontal="true"/>
 </RelativeLayout>
